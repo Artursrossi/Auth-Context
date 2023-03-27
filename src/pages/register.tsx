@@ -20,7 +20,7 @@ export default function Register() {
     if (authenticated) {
       Router.push('/dashboard')
     }
-  }, [])
+  }, [authenticated])
 
   async function handleRegister(event: FormEvent): Promise<void> {
     event.preventDefault()

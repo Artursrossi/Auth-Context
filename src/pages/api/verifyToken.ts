@@ -1,11 +1,10 @@
 import { type NextApiRequest, type NextApiResponse } from 'next'
 import jwt from 'jsonwebtoken'
 
-export default async (
-  request: NextApiRequest,
-  response: NextApiResponse,
-): Promise<void> => {
-  const { token } = request.body
+export default (request: NextApiRequest, response: NextApiResponse) => {
+  const { cookies } = request
+
+  const token = cookies.auth_token
 
   const secret = process.env.SECRET
 

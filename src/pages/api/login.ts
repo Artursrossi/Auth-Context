@@ -1,7 +1,9 @@
+/* eslint-disable camelcase */
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
 import { type NextApiRequest, type NextApiResponse } from 'next'
 import jwt from 'jsonwebtoken'
+import { serialize } from 'cookie'
 
 const prisma = new PrismaClient()
 
@@ -19,11 +21,13 @@ export default async (
         },
         select: {
           pass: true,
+          name: true,
+          account_level: true,
         },
       })
-      .then((hash) => {
-        if (hash != null) {
-          LogIn(hash.pass)
+      .then((res) => {
+        if (res != null) {
+          LogIn(res.pass, res.name, res.account_level)
         } else {
           return response.status(200).json('InvalidEmail')
         }
@@ -35,18 +39,36 @@ export default async (
     return response.status(200).json('VerifyDataError')
   }
 
-  async function LogIn(hash: string): Promise<void> {
+  async function LogIn(
+    hash: string,
+    name: string,
+    account_level: number,
+  ): Promise<void> {
     const validPassword = bcrypt.compareSync(pass, hash)
     if (validPassword) {
       const secret = process.env.SECRET
       if (secret) {
         const token = jwt.sign(
           {
+            name,
             email,
+            account_level,
           },
           secret,
         )
-        return response.status(201).json(token)
+
+        const serialised = serialize('auth_token', token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: 'strict',
+          maxAge: 60 * 60 * 24 * 7, // 7 dias
+          path: '/',
+        })
+
+        return response
+          .setHeader('Set-Cookie', serialised)
+          .status(201)
+          .json('OK')
       } else {
         return response.status(500).json('NoSecret')
       }

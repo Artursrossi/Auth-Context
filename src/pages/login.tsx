@@ -12,13 +12,13 @@ import { AuthContext } from '../contexts/AuthContext'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
-  const { authenticated, signIn } = useContext(AuthContext)
+  const { authenticated, verifyCookies } = useContext(AuthContext)
 
   useEffect(() => {
     if (authenticated) {
       Router.push('/dashboard')
     }
-  }, [])
+  }, [authenticated])
 
   async function handleLogin(event: FormEvent): Promise<void> {
     event.preventDefault()
@@ -52,7 +52,9 @@ export default function Login() {
             formPassErrorID.innerHTML = 'Senha Incorreta'
             RemoveLoadingAnimation()
           } else if (res.status === 201) {
-            signIn(res.data)
+            verifyCookies()
+            RemoveLoadingAnimation()
+            Router.push('/dashboard')
           } else {
             console.log('Ocorreu um erro')
           }
