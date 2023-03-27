@@ -39,10 +39,10 @@ export default function Dashboard() {
     <>
       {authenticated && user?.account_level === 1 ? (
         <main className="main">
-          <h1>Admin Page</h1>
+          <h1>Admin</h1>
           {data ? (
             <div className="product-list">
-              <h2>Usuários: </h2>
+              <h2>Todos Usuários: </h2>
               {data?.map((item) => {
                 return (
                   <div key={item.email} className="product">

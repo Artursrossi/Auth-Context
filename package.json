@@ -1,5 +1,6 @@
 {
   "name": "auth-context",
+  "author": "Artur Schincariol Rossi",
   "version": "0.1.0",
   "private": true,
   "scripts": {
