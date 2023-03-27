@@ -1,17 +1,22 @@
 import React from 'react'
-import Link from 'next/link'
 
 export default function Home() {
   return (
     <>
       <main className="main">
         <img src="/react.svg" alt="logo" />
-        <Link className="button" href="/register">
-          Register
-        </Link>
-        <Link className="button" href="/login">
-          Login
-        </Link>
+        <a href="/register" className="button">
+          REGISTER
+        </a>
+        <a href="login" className="button">
+          LOGIN
+        </a>
+        <a href="dashboard" className="button">
+          DASHBOARD
+        </a>
+        <a href="admin" className="button">
+          ADMIN
+        </a>
       </main>
     </>
   )

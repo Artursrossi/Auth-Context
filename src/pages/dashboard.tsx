@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import Router from 'next/router'
+import Link from 'next/link'
 
 import { AuthContext } from '../contexts/AuthContext'
 
@@ -14,7 +15,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <main className="main dashboard">
+      <main className="main">
         <h1>Dashboard</h1>
         <br />
         {user ? (
@@ -33,14 +34,6 @@ export default function Dashboard() {
         ) : (
           <></>
         )}
-        {user ? (
-          <>
-            <br />
-            <p>Seu nível: {user.account_level}</p>
-          </>
-        ) : (
-          <></>
-        )}
         <button
           id="loadingButton"
           className="button"
@@ -50,6 +43,13 @@ export default function Dashboard() {
           SAIR DA CONTA
         </button>
         <div id="loadingSpinner" className="spinner displayNone"></div>
+        {user?.account_level === 1 ? (
+          <Link className="button" href="/admin">
+            ADMIN PAGE
+          </Link>
+        ) : (
+          <></>
+        )}
       </main>
     </>
   )
