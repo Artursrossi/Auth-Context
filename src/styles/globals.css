@@ -173,6 +173,11 @@ form span {
   font-size: 2.4rem;
 }
 
+.main > .admin-text {
+  font-size: 2.8rem;
+  margin-bottom: 1.6rem;
+}
+
 /* SPINNER */
 .spinner {
   position: relative;

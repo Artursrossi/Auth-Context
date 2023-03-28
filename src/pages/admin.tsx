@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Router from 'next/router'
 import axios from 'axios'
+import Link from 'next/link'
+import Image from 'next/image'
 
 import { AuthContext } from '../contexts/AuthContext'
 
@@ -54,11 +56,29 @@ export default function Dashboard() {
               })}
             </div>
           ) : (
-            <></>
+            <>
+              <div id="loadingSpinner" className="spinner"></div>
+            </>
           )}
         </main>
       ) : (
-        <></>
+        <>
+          <main className="main">
+            <Image
+              src="/react.svg"
+              alt="logo"
+              width={120}
+              height={60}
+              priority
+            />
+            <h1 className="admin-text">
+              Você não tem permissão para acessar está página
+            </h1>
+            <Link className="button" href="/login">
+              Retornar
+            </Link>
+          </main>
+        </>
       )}
     </>
   )
