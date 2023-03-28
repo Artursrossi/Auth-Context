@@ -71,9 +71,9 @@ export default function Dashboard() {
               height={60}
               priority
             />
-            <h1 className="admin-text">
+            <p className="span">
               Você não tem permissão para acessar está página
-            </h1>
+            </p>
             <Link className="button" href="/login">
               Retornar
             </Link>
