@@ -41,7 +41,7 @@ export default function Dashboard() {
     <>
       {authenticated && user?.account_level === 1 ? (
         <main className="main">
-          <h1>Admin</h1>
+          <Image src="/react.svg" alt="logo" width={120} height={60} priority />
           {data ? (
             <div className="product-list">
               <h2>Todos Usuários: </h2>

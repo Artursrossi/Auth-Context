@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { AuthContext } from '../contexts/AuthContext'
 
@@ -16,11 +17,9 @@ export default function Dashboard() {
   return (
     <>
       <main className="main">
-        <h1>Dashboard</h1>
-        <br />
+        <Image src="/react.svg" alt="logo" width={120} height={60} priority />
         {user ? (
           <>
-            <br />
             <p>Seu Nome: {user.name}</p>
           </>
         ) : (
@@ -30,6 +29,7 @@ export default function Dashboard() {
           <>
             <br />
             <p>Seu Email: {user.email}</p>
+            <br />
           </>
         ) : (
           <></>
@@ -40,12 +40,12 @@ export default function Dashboard() {
           type="button"
           onClick={logout}
         >
-          SAIR DA CONTA
+          Sair da Conta
         </button>
         <div id="loadingSpinner" className="spinner displayNone"></div>
         {user?.account_level === 1 ? (
           <Link className="button" href="/admin">
-            ADMIN PAGE
+            Admin
           </Link>
         ) : (
           <></>
