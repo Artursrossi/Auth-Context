@@ -59,7 +59,10 @@ export default function Login() {
             console.log('Ocorreu um erro')
           }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          RemoveLoadingAnimation()
+          console.log(err)
+        })
     }
   }
 

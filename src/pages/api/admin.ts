@@ -15,7 +15,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     if (secret) {
       jwt.verify(token, secret, async (err: any, decoded: any) => {
         if (err) {
-          return response.status(200).json('InvalidToken')
+          return response.status(401).json('InvalidToken')
         }
 
         if (decoded.account_level === 1) {
@@ -32,13 +32,13 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
             })
             .catch((err) => console.log(err))
         } else {
-          return response.status(200).json('NoPermission')
+          return response.status(403).json('NoPermission')
         }
       })
     } else {
       return response.status(500).json('NoSecret')
     }
   } else {
-    return response.status(200).json('NoToken')
+    return response.status(401).json('NoToken')
   }
 }

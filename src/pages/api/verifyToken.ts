@@ -12,7 +12,7 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
     if (secret) {
       jwt.verify(token, secret, (err: any, decoded: any) => {
         if (err) {
-          return response.status(200).json('InvalidToken')
+          return response.status(400).json('InvalidToken')
         }
 
         return response.status(201).json(decoded)
@@ -21,6 +21,6 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
       return response.status(500).json('NoSecret')
     }
   } else {
-    return response.status(200).json('NoToken')
+    return response.status(401).json('NoToken')
   }
 }

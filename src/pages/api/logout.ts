@@ -17,6 +17,6 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
 
     return response.setHeader('Set-Cookie', serialised).status(201).json('OK')
   } else {
-    return response.status(200).json('NoToken')
+    return response.status(401).json('NoToken')
   }
 }
