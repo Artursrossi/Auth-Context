@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-100: #8257e5;
+  --primary-200: #6b46c1;
+  --background-100: #202024;
+  --background-200: #121214;
+  --text: #fff;
+  --text-grey: #a0aec0;
+  --text-placeholder: #474b4c;
+
+  font-size: 62.5%;
+}
+
+body {
+  background-color: var(--background-200);
+  color: var(--text);
+}
+
+body * {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+}
+
+::placeholder {
+  color: var(--text-placeholder);
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: var(--text-placeholder);
+}
+
+::-ms-input-placeholder {
+  color: var(--text-placeholder);
+}
+
+button:disabled::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+button:disabled {
+  color: transparent !important;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
