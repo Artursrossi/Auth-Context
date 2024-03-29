@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -14,6 +14,15 @@ import styles from './register.module.css'
 export default function Register() {
   const router = useRouter()
   const [repeatPassword, setRepeatPassword] = useState('')
+
+  useEffect(() => {
+    axios
+      .get('/api/verifyAuthCookie')
+      .then((res) => {
+        if (res.data === 'OK') router.push('/dashboard')
+      })
+      .catch((err) => console.error(err))
+  }, [router])
 
   const methods = useForm<RegisterType>({
     resolver: yupResolver(RegisterSchema),

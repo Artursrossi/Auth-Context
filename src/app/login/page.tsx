@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -13,6 +13,16 @@ import styles from './login.module.css'
 
 export default function Login() {
   const router = useRouter()
+
+  useEffect(() => {
+    axios
+      .get('/api/verifyAuthCookie')
+      .then((res) => {
+        if (res.data === 'OK') router.push('/dashboard')
+      })
+      .catch((err) => console.error(err))
+  }, [router])
+
   const methods = useForm<SignInType>({
     resolver: yupResolver(SignInSchema),
   })
