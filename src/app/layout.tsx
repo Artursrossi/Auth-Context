@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import NextTopLoader from 'nextjs-toploader'
 
 import '@/styles/globals.css'
 
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body>{children}</body>
+      <body>
+        <NextTopLoader />
+        {children}
+      </body>
     </html>
   )
 }
