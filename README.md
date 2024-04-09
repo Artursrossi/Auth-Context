@@ -13,13 +13,13 @@
 
 ## 🚀 Pages
 
-| Pages     | Access Type                                                                   |
-| --------- | ----------------------------------------------------------------------------- |
-| Index     | Public Route                                                                  |
-| Register  | Public Route, but when the user is logged in, he is directed to the dashboard |
-| Login     | Public Route, but when the user is logged in, he is directed to the dashboard |
-| Dashboard | Protected Route, Only logged users can access this route                      |
-| Admin     | Protected Route, Only admins can access this route                            |
+| Pages     | Access Type                                                    |
+| --------- | -------------------------------------------------------------- |
+| Index     | Public Route                                                   |
+| Register  | Public Route, but redirect to dashboard when user is logged in |
+| Login     | Public Route, but redirect to dashboard when user is logged in |
+| Dashboard | Protected Route, Only logged users can access this route       |
+| Admin     | Protected Route, Only admins can access this route             |
 
 ## 🔖 Admin Account
 
@@ -31,7 +31,6 @@
 
 ## 👨🏾‍💻 Security
 
-- JWT Token
+- Protected API Routes (two security layers, the first one on middleware and the second in the Routes)
+- JSON Web Tokens w/ HttpOnly + Secure Cookies
 - Passwords Hash with Bcrypt (12 Salt Rounds)
-- HttpOnly + Secure Cookies
-- Protected API Routes
