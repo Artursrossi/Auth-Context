@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   })
   if (hasAccount) return Response.json('EmailAlreadyExist')
 
-  const hash = bcrypt.hashSync(password, 12)
+  const hash = await bcrypt.hash(password, 12)
 
   await prisma.user.create({
     data: {

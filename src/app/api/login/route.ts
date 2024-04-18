@@ -28,8 +28,8 @@ export async function POST(request: Request) {
   })
   if (!userData) return Response.json('InvalidCredentials')
 
-  const isValidPassword = bcrypt.compareSync(password, userData.password)
-  if (!isValidPassword) return Response.json('InvalidCredentials')
+  const isValidPassword = await bcrypt.compare(password, userData.password)
+  if (isValidPassword === false) return Response.json('InvalidCredentials')
 
   const secretKey = createSecretKey(secret, 'utf-8')
   const token = await new SignJWT({
